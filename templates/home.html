@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="print_blob">
+        <div>
+            <button class='myButton' id="print_em">Print Me</button>
+        </div>
+        <br>
+        <div id="container"><form>
+            <h1 class="header">LL Resolers</h1>
+            <label>Name</label>
+            <input type="text" name="name"><br>
+            <label>Email</label>
+            <input type="email" name="email"><br>
+            <label>Telephone</label>
+            <input type="text" name="phone"><br>
+            <label>Type of Shoe</label>
+            <input type="text" name="shoe_type"><br>
+            <label>Rand Repair</label>
+            <input list="rand_type" name="rand">
+            <datalist id="rand_type">
+                <option value="Yes">yesRand</option>
+                <option value="No" selected>noRand</option>
+                <option value="If Necessary">ifNecRand</option>
+            </datalist><br>
+            <label>Return By</label>
+            <input list="return_type" name="return">
+            <datalist id="return_type">
+                <option value="Recorded Post">Post</option>
+                <option value="V12 Collect">Collect</option>
+            </datalist><br>
+            <label>Rubber Preference</label>
+            <input list="rubber_pref" name="rubber">
+            <datalist id="rubber_pref">
+                <option value="C4">5.10 Stealth C4 (4.2mm)</option>
+                <option value="Onyxx">5.10 Stealth Onyxx (4.2mm)</option>
+                <option value="Edge">Vibram XS Edge (4mm)</option>
+                <option value="Grip2">Vibram XS Grip2 (3.5mm)</option>
+                <option value="Whatever is appropriate" selected>rubberAppropriate</option>
+            </datalist><br>
+            <label>Address</label>
+            <textarea name="address" rows="8" cols="30"
+                          placeholder="Enter your address here."></textarea><br>
+            <label>Comments</label>
+            <textarea name="comments" rows="10" cols="30"
+                          placeholder="Put any comments here."></textarea><br>
+        </form></div>
+        <p>I'll email you an invoice...</p>
+        <div class="floating-box">[url]</div>
+        <div class="floating-box">[email]</div>
+        <div class="floating-box">[tel]</div>
+    </div>
+<script src="static/js/snip.js"></script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <div class="print_blob">
+        <div>
+            <button class='myButton' id="print_em">Print Me</button>
+            <button class='myButton' id="clear_em">Clear Records</button>
+        </div>
+        <p id="stamped"></p>
+        <table>
+            <tr>
+                <th>count</th>
+                <th>name</th>
+                <th>email</th>
+                <th>tel</th>
+                <th>shoe type</th>
+                <th>rubber</th>
+                <th>rand</th>
+                <th>return</th>
+                <th>address</th>
+                <th>comment</th>
+            </tr>
+            <tbody>
+                {% for ct, row in rows %}
+                    <tr>
+                        <td>{{ct}}</td>
+                        {% for res in row %}
+                            <td>{{res}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<script src="static/js/snip_admin.js"></script>
+{% endblock %}
