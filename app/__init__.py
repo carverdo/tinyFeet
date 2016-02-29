@@ -1,5 +1,5 @@
 """
-Simple form-filler..
+Simple form-filler.
 """
 __author__ = 'donal'
 __project__ = 'tinyFeet'
