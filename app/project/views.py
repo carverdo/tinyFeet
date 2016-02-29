@@ -1,7 +1,7 @@
 __author__ = 'donal'
 __project__ = 'tinyFeet'
 
-from flask import render_template
+from flask import render_template, request
 from . import proj
 from .. import mc
 
@@ -15,15 +15,16 @@ def home():
 
 @proj.route('/admin')
 def admin():
+    """
     with open('app/static/data/records.txt') as fileObj:
         rows = fileObj.readlines()
         rows = [row.strip().split('|') for row in rows]
+    """
+    rows = mc.get('records')
+    if rows: rows = [row.strip().split('|') for row in rows]
+    else: rows = []
     return render_template('admin.html', rows=list(enumerate(rows)))
 
-
-@proj.route('/blob')
-def blob():
-    return 'blob'
 
 @proj.route('/setting')
 def setting():
@@ -32,7 +33,7 @@ def setting():
 
 @proj.route('/getting')
 def getting():
-    return str(mc.get('foo'))
+    return str(mc.get('records'))
 
 
 # ==================
@@ -51,15 +52,24 @@ def _stamp():
                     request.form['address'],
                     request.form['comments']
                     ))
+    # to ensure no confusion on storage
     tmp = tmp.replace('\r\n', ',')
     tmp = tmp.replace('\n', ',')
     tmp += '\n'
+    # memcache access
+    curr = mc.get('records')
+    if not curr: curr = [tmp]
+    else: curr.append(tmp)
+    mc.set('records', curr)
+    """
     with open('app/static/data/records.txt', 'a') as fileObj:
         fileObj.write(tmp)
+    """
     return jsonify(**request.form)
 
 
 @proj.route('/_clear')
 def _clear():
-    with open('app/static/data/records.txt', 'w'): pass
+    # with open('app/static/data/records.txt', 'w'): pass
+    mc.flush_all()
     return 'cleared'
