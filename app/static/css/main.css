@@ -22,9 +22,10 @@ label {
     display: inline-block;
     width: 180px;
 }
-input {
-    width: 228px;
+input, textarea {
+    width: 250px;
 }
+
 /* TABLE STYLES */
 table {
     border: 5px solid #FFFF00;
