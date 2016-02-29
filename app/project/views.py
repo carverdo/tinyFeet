@@ -14,7 +14,7 @@ def home():
 
 @proj.route('/admin')
 def admin():
-    with open('./static/data/records.txt') as fileObj:
+    with open('app/static/data/records.txt') as fileObj:
         rows = fileObj.readlines()
         rows = [row.strip().split('|') for row in rows]
     return render_template('admin.html', rows=list(enumerate(rows)))
@@ -39,12 +39,12 @@ def _stamp():
     tmp = tmp.replace('\r\n', ',')
     tmp = tmp.replace('\n', ',')
     tmp += '\n'
-    with open('./static/data/records.txt', 'a') as fileObj:
+    with open('app/static/data/records.txt', 'a') as fileObj:
         fileObj.write(tmp)
     return jsonify(**request.form)
 
 
 @proj.route('/_clear')
 def _clear():
-    with open('./static/data/records.txt', 'w'): pass
+    with open('app/static/data/records.txt', 'w'): pass
     return 'cleared'
