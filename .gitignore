@@ -10,7 +10,7 @@ gen
 # DATABASES
 
 # DIRECTORIES
-venv
+v_env
 del_area
 
 # SUBDIRECTORIES
