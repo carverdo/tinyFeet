@@ -3,6 +3,7 @@ __project__ = 'tinyFeet'
 
 from flask import render_template
 from . import proj
+from .. import mc
 
 # ==================
 # OUR TWO PAGES
@@ -18,6 +19,20 @@ def admin():
         rows = fileObj.readlines()
         rows = [row.strip().split('|') for row in rows]
     return render_template('admin.html', rows=list(enumerate(rows)))
+
+
+@proj.route('/blob')
+def blob():
+    return 'blob'
+
+@proj.route('/setting')
+def setting():
+    mc.set('foo', 12)
+    return 'set'
+
+@proj.route('/getting')
+def getting():
+    return str(mc.get('foo'))
 
 
 # ==================
